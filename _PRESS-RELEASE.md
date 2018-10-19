@@ -1,4 +1,4 @@
-# Project Name #
+# Word Info #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,29 +16,29 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Query a word => Get info ##
+  > Enter a word in the search bar and receive definition, pronuciation, and synonyms. Maybe an image.
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## For fans of all words ##
+  > For anyone curioius to learn more about a word.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Whenever you need to get more information about the word you can use Word Info to gather data about it.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Checking a dictionary only gives you a definition; thesaurus a words synonyms. Neither will correctly pronounce the word for you.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > With Word Info you get all three with one single search
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Never get a papercut from a dictionary page again!" -Steven Duncan
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Simply type a word in the search bar and hit search.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "I never knew how easy it could be to get information on my favorite word" - customer
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Check out our web app @ localhost:3000 to get started!

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import $ from 'jquery';
 import List from './components/List.jsx';
 
@@ -27,7 +28,7 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>Item List</h1>
+      <h1>Word Search</h1>
       <List items={this.state.items}/>
     </div>)
   }
