@@ -3,8 +3,9 @@ const bodyParser = require('body-parser');
 const items = require('../database-mongo');
 
 const app = express();
-app.use(bodyParser.json());
+const port = 3000;
 
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 
@@ -18,7 +19,7 @@ app.get('/items', function (req, res) {
   });
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('listening on port 3000!');
 });
 

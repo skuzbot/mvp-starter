@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import $ from 'jquery';
 import List from './components/List.jsx';
+import Search from './components/Search.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: []
+      definitions: [],
+      images: [],
     }
   }
 
@@ -27,10 +30,17 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
-      <h1>Word Search</h1>
-      <List items={this.state.items}/>
-    </div>)
+    return (
+      <table>
+        <thead>
+          <tr>Search a Word!!</tr>
+        </thead>
+        <tbody>
+          <Search />
+        </tbody>
+      </table>
+
+    )
   }
 }
 
