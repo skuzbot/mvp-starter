@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const items = require('../database-mongo');
+const words = require('../database-mongo');
 
 const app = express();
 const port = 3000;
@@ -9,8 +9,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 
-app.get('/items', function (req, res) {
-  items.selectAll(function(err, data) {
+app.get('/api/words', function (req, res) {
+  words.selectAll(function(err, data) {
     if(err) {
       res.sendStatus(500);
     } else {

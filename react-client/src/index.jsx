@@ -9,24 +9,29 @@ import Search from './components/Search.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
+      currentWord: '',
+      entomology: '',
       definitions: [],
-      images: [],
+      exampleSentence: '',
+      pronunciationURL: ''
+      //images: [],
     }
   }
 
   componentDidMount() {
-    $.ajax({
-      url: '/items', 
-      success: (data) => {
-        this.setState({
-          items: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
+    
+    // $.ajax({
+    //   url: '/api/words', 
+    //   success: (data) => {
+    //     this.setState({
+    //       items: data
+    //     })
+    //   },
+    //   error: (err) => {
+    //     console.log('err', err);
+    //   }
+    // });
   }
 
   render () {

@@ -11,19 +11,25 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var wordSchema = mongoose.Schema({
+  _id: Number,
+  word: String,
+  lexicalCatagory: String,
+  etymology: String,
+  definitions: Array,
+  exampleSentence: Array,
+  pronunciation_Url: String,
+  image_Urls: Array
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var Word = mongoose.model('Word', wordSchema);
 
 var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
+  Word.find({}, function(err, words) {
     if(err) {
       callback(err, null);
     } else {
-      callback(null, items);
+      callback(null, words);
     }
   });
 };
