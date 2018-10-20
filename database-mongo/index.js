@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/27017');
 
 const db = mongoose.connection;
 
@@ -14,28 +14,30 @@ db.once('open', function() {
 const wordSchema = mongoose.Schema({
   _id: String,
   word: String,
-  lexicalCatagory: String,
-  etymology: String,
-  definitions: Array,
-  exampleSentence: Array,
-  pronunciation_Url: String,
+  // lexicalCatagory: String,
+  // etymology: String,
+  // definitions: Array,
+  // exampleSentence: Array,
+  // pronunciation_Url: String,
 });
 
 const Word = mongoose.model('Word', wordSchema);
 
-const saveWord = (newWord, cb) => {
+const saveWord = (responseData, cb) => {
+  
+  let newWord = responseData;
+  console.log(`newWord in db is ${newWord}`);
 
-  const newWord = new Word({
+  newWord = new Word({
     _id: newWord.id,
     word: newWord.word,
-    lexicalCatagory: newWord.lexicalEntries[0].lexicalCategory,
-    etymology: newWord.lexicalEntries[0].entries[0].etymologies[0],
-    definitions: newWord.lexicalEntries[0].entries[0].senses.map(sense => (sense.definitions[0])),
-    exampleSentence: newWord.lexicalEntries[0].entries[0].senses[0].examples[0].text,
-    pronunciation_Url: newWord.lexicalEntries[0].pronunciations[0].audioFile,
+    // lexicalCatagory: newWord.lexicalEntries[0].lexicalCategory,
+    // etymology: newWord.lexicalEntries[0].entries[0].etymologies[0],
+    // definitions: newWord.lexicalEntries[0].entries[0].senses.map(sense => (sense.definitions[0])),
+    // exampleSentence: newWord.lexicalEntries[0].entries[0].senses[0].examples[0].text,
+    // pronunciation_Url: newWord.lexicalEntries[0].pronunciations[0].audioFile,
   })
 
-  console.log(`newWord in db is ${newWord}`);
 
   Word.findOneAndUpdate(
     {_id: newWord.id}, 
@@ -53,7 +55,6 @@ const saveWord = (newWord, cb) => {
 
 }
 
-
 const selectAll = function(callback) {
   Word.find({}, function(err, words) {
     if(err) {
@@ -65,3 +66,4 @@ const selectAll = function(callback) {
 };
 
 module.exports.selectAll = selectAll;
+module.exports.saveWord = saveWord;
