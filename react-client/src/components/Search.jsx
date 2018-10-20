@@ -24,8 +24,11 @@ class Search extends React.Component {
             type="button"
             name="submitSearch"
             value="Search"
-            onClick={() => this.props.search(this.props.query)}
-          />  
+            onClick={() => {
+              this.props.search(this.props.query);
+              //this.props.getWords();
+            }}
+            />  
         </td>
     
     )
