@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {saveWord, selectAll} = require('../database-mongo');
 const {searchOxfordWords} = require('../helpers/searchOxford.js');
+const {searchPixabay} = require('../helpers/searchPixabay.js');
 
 const app = express();
 const port = 3000;
@@ -11,7 +12,7 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 
 app.post('/api/search', (request, response) => {
-  console.log(request.body, 'was sent as a request to app.post /api/search'); // request.body is {query: 'term'}
+  //console.log(request.body, 'was sent as a request to app.post /api/search'); // request.body is {query: 'term'}
   //console.log('1st date.now: ', Date.now());
   
   //searchOxfordWords(request.body.query, (data) => (console.log(data)));
@@ -23,7 +24,7 @@ app.post('/api/search', (request, response) => {
       
       saveWord(dataObj)
       .then(res => {
-        console.log('data saved', res)
+        //console.log('data saved', res)
 
         response.end(res);
       })
@@ -45,16 +46,26 @@ app.post('/api/search', (request, response) => {
     // }
 })
 
+app.post('/api/image', (request, response) => {
+  console.log('image request is: ', request.body);
+  searchPixabay(request.body.query)
+  .then(image => {
+    console.log('app.post/api/image returns: ', image);
+  })
+  .catch(error => {
+    console.log('app.post/api/image error: ', error)
+  })
+})
 
 app.get('/api/words', (request, response) => {
-  console.log('request in app.get in server is ', request.body)
+  //console.log('request in app.get in server is ', request.body)
 
   selectAll((err, words) => {
     if (err) {
       console.log(`error in app.get words on server ${err}`);
       response.status(500).end('error on server in app.get /api/words')
     } else {
-      console.log('words from select all ', words)
+      //console.log('words from select all ', words)
       let wordsArray = words.map(word => {
         return {word};
       })

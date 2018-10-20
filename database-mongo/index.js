@@ -63,7 +63,7 @@ const saveWord = (responseData) => {
         } else {
           
           resolve(sendWord => {
-            console.log('sendWord in fOAU :', sendWord);
+            //console.log('sendWord in fOAU :', sendWord);
             return sendWord;
           })
         }
@@ -80,7 +80,7 @@ const selectAll = function(callback) {
       console.log(`err in selectAll on db ${err}`)
       callback(err, null);
     } else {
-      console.log(`words in selectAll on db ${words}`)
+      //console.log(`words in selectAll on db ${words}`)
       callback(null, words);
     }
   });

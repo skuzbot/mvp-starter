@@ -73,7 +73,11 @@ class App extends React.Component {
     })
     .then(function (response) {
       console.log('index.jsx response: ', response);
-      axios.post
+    })
+    .then(() => {
+      axios.post('/api/image', {
+        query: query
+      })
     })
     .then(res => {
       this.getWords();
@@ -112,6 +116,7 @@ class App extends React.Component {
               etymology={this.state.etymology}
               pronunciationURL={this.state.pronunciationURL}
             />
+            
           </tr>
           <tr>
             <List words={this.state.words}/>

@@ -11,7 +11,7 @@ searchOxfordWords = (query) => {
       }
     })
     .then(response => {
-      console.log(`.then response: ${response.data.results[0].word} with timestamp ${Date.now()}`);
+      //console.log(`.then response: ${response.data.results[0].word} with timestamp ${Date.now()}`);
       resolve(response.data.results[0]);
     })
     .catch(error => {
