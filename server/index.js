@@ -49,8 +49,11 @@ app.post('/api/search', (request, response) => {
 app.post('/api/image', (request, response) => {
   console.log('image request is: ', request.body);
   searchPixabay(request.body.query)
-  .then(image => {
-    console.log('app.post/api/image returns: ', image);
+  .then(imageArray => {
+    //console.log('app.post/api/image returns: ', image);
+    console.log('imageArray on server', imageArray);
+    
+    response.json(imageArray);
   })
   .catch(error => {
     console.log('app.post/api/image error: ', error)
@@ -70,7 +73,7 @@ app.get('/api/words', (request, response) => {
         return {word};
       })
       //console.log('wordsArray :', wordsArray);
-      response.status(200).json(wordsArray).end();  //? is end() needed?
+      response.status(200).json(wordsArray);
     }
   })
 })

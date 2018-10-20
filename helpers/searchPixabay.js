@@ -17,7 +17,7 @@ searchPixabay = (query) => {
         return hit.largeImageURL;
       })
       console.log('imageArray is: ', imageArray);
-      resolve(response)
+      resolve(imageArray);
     })
     .catch(error => {
       console.log('pixabay error: ', error)

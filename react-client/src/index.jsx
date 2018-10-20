@@ -4,10 +4,18 @@ import axios from 'axios';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
 import Definition from './components/Definition.jsx';
+import Image from './components/Image.js'
 
 const tableStyle = {
   border: '1px solid black',
-  width: '50%'
+  width: '80%',
+  'font-family': 'Titillium Web, sans-serif',
+  'font-size': '16px',
+  background: '#dcdfe5'
+}
+
+const titleFont = {
+  'font-size': '24px'
 }
 
 class App extends React.Component {
@@ -23,14 +31,15 @@ class App extends React.Component {
       definitions: [],
       //exampleSentence: '',
       pronunciationURL: '',
-      words: []
-      //images: [],
+      words: [],
+      images: []
     }
 
     this.onChange = this.onChange.bind(this);
     this.search = this.search.bind(this);
     this.textGone = this.textGone.bind(this);
     this.getWords = this.getWords.bind(this);
+    this.getImages = this.getImages.bind(this);
   }
 
   onChange(e) {
@@ -66,6 +75,21 @@ class App extends React.Component {
     })
   }
 
+  getImages() {
+    axios.post('/api/image', {
+      query: query
+    })
+    .then(images => {
+      console.log('images on client side :', images);
+      this.setState({
+        images: images.data
+      })
+    })
+    .catch(error => {
+      console.log('client side image search error', error)
+    })
+  }
+
   search(query) {
     console.log(query, ' was searched from client!');
     axios.post('/api/search', {
@@ -78,8 +102,17 @@ class App extends React.Component {
       axios.post('/api/image', {
         query: query
       })
+      .then(images => {
+        console.log('images on client side :', images);
+        this.setState({
+          images: images.data
+        })
+      })
+      .catch(error => {
+        console.log('client side image search error', error)
+      })
     })
-    .then(res => {
+    .then(() => {
       this.getWords();
       
     })
@@ -91,15 +124,14 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getWords()
+    this.getImages();
   }
 
   render () {
     return (
       <table style={tableStyle}>
         <thead>
-          <tr>Search a Word!!</tr>
-        </thead>
-        <tbody>
+          <tr style={titleFont}>Search a Word!!</tr>
           <tr>
             <Search 
               query={this.state.query}
@@ -109,6 +141,8 @@ class App extends React.Component {
               getWords={this.getWords}
             />
           </tr>
+        </thead>
+        <tbody>
           <tr>
             <Definition
               currentWord={this.state.currentWord}
@@ -116,7 +150,9 @@ class App extends React.Component {
               etymology={this.state.etymology}
               pronunciationURL={this.state.pronunciationURL}
             />
-            
+            <Image 
+              images={this.state.images}
+            />
           </tr>
           <tr>
             <List words={this.state.words}/>
