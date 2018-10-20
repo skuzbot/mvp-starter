@@ -257,3 +257,65 @@ const senses = [{
     short_definitions: ['game in which message is distorted by being passed around in whisper']
   }
 ];
+
+let wordDataObject = {
+  id: "database",
+  language: "en",
+  lexicalEntries: [
+    {
+      entries: [
+        {
+          grammaticalFeatures: [{ text: "Singular", type: "Number" }],
+          homographNumber: "000",
+          senses: [
+            {
+              definitions: [
+                "a structured set of data held in a computer, especially one that is accessible in various ways"
+              ],
+              domains: ["Computing"],
+              examples: [
+                { text: "a database covering nine million workers" },
+                { text: "database systems" }
+              ],
+              id: "m_en_gbus0251410.007",
+              short_definitions: ["structured set of data held in computer"]
+            }
+          ]
+        }
+      ],
+      language: "en",
+      lexicalCategory: "Noun",
+      pronunciations: [
+        {
+          dialects: ["American English"],
+          phoneticNotation: "respell",
+          phoneticSpelling: "ˈdādəˌbās"
+        },
+        {
+          dialects: ["American English"],
+          phoneticNotation: "respell",
+          phoneticSpelling: "ˈdadəˌbās"
+        },
+        {
+          audioFile:
+            "http://audio.oxforddictionaries.com/en/mp3/database_us_2_rr.mp3",
+          dialects: ["American English"],
+          phoneticNotation: "IPA",
+          phoneticSpelling: "ˈdædəˌbeɪs"
+        },
+        {
+          audioFile:
+            "http://audio.oxforddictionaries.com/en/mp3/database_us_1_rr.mp3",
+          dialects: ["American English"],
+          phoneticNotation: "IPA",
+          phoneticSpelling: "ˈdeɪdəˌbeɪs"
+        }
+      ],
+      text: "database"
+    }
+  ],
+  type: "headword",
+  word: "database"
+};
+
+console.log(wordDataObject.lexicalEntries[0].entries.lexicalCategory);

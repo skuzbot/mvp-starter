@@ -2,7 +2,7 @@ import React from 'react';
 
 const ListItem = (props) => (
   <li>
-    { props.word.name }
+    { props.word }
   </li>
 )
 

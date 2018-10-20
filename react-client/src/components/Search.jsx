@@ -5,37 +5,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      query: 'database'
     }
-    this.onChange = this.onChange.bind(this);
-    this.search = this.search.bind(this);
-  }
-
-  onChange(e) {
-    this.setState({
-      query: e.target.value
-    })
-  }
-
-  textGone() {
-    this.setState({
-      query: ''
-    })
-  }  
-
-  search(query) {
-    console.log(query, ' was searched from client!');
-    axios.post('/api/search', {
-      query: this.state.query
-    })
-    .then(function (response) {
-      console.log('searchjsx response: ', response);
-    })
-    .catch(function (error) {
-      console.log('searchjsx error: ', error);
-    });
-
-    
     
   }
 
@@ -46,15 +16,15 @@ class Search extends React.Component {
           <input
             type="text"
             name="searchBar"
-            value={this.state.query}
-            onChange={this.onChange}
-            onClick={() => this.textGone()}
+            value={this.props.query}
+            onChange={this.props.onChange}
+            onClick={() => this.props.textGone()}
           />
           <input
             type="button"
             name="submitSearch"
             value="Search"
-            onClick={() => this.search(this.state.query)}
+            onClick={() => this.props.search(this.props.query)}
           />  
         </td>
     
