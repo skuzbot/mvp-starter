@@ -14,7 +14,8 @@ class App extends React.Component {
       entomology: '',
       definitions: [],
       exampleSentence: '',
-      pronunciationURL: ''
+      pronunciationURL: '',
+      words: []
       //images: [],
     }
   }
@@ -41,7 +42,12 @@ class App extends React.Component {
           <tr>Search a Word!!</tr>
         </thead>
         <tbody>
-          <Search />
+          <tr>
+            <Search />
+          </tr>
+          <tr>
+            <List words={this.state.words}/>
+          </tr>
         </tbody>
       </table>
 

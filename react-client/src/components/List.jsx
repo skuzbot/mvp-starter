@@ -2,11 +2,11 @@ import React from 'react';
 import ListItem from './ListItem.jsx';
 
 const List = (props) => (
-  <div>
-    <h4> List Component </h4>
-    There are { props.items.length } items.
-    { props.items.map(item => <ListItem item={item}/>)}
-  </div>
+  <tr>
+    <h4> Word List: </h4>
+    You've saved { props.words.length } word{props.words.length === 1 ? '' : 's'}.
+    { props.words.map(word => <ListItem word={word}/>)}
+  </tr>
 )
 
 export default List;
