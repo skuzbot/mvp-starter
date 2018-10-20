@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
+import Definition from './components/Definition.jsx';
 
 
 class App extends React.Component {
@@ -12,9 +13,9 @@ class App extends React.Component {
       //search states:
       query: 'willow',
 
-      //app states:
-      currentWord: '',
-      entomology: '',
+      //definition states:
+      currentWord: 'hey',
+      etymology: '',
       definitions: [],
       //exampleSentence: '',
       pronunciationURL: '',
@@ -43,12 +44,16 @@ class App extends React.Component {
   getWords() {
     axios.get('/api/words')
     .then(words => {
-      // console.log('json parse: ', JSON.stringify(words));
+      console.log('json: ', JSON.stringify(words.data[words.data.length - 1]));
       // console.log(`wordsObj on client get is ${words.data[0].word.word}`)
       let wordsArray = words.data.map(word => (word.word.word));
       //console.log('wordsArray :', wordsArray);
       this.setState({
-        words: wordsArray
+        currentWord: words.data[words.data.length - 1].word.word,
+        words: wordsArray,
+        definitions: words.data[words.data.length - 1].word.definitions,
+        etymology: words.data[words.data.length - 1].word.etymology,
+        pronunciationURL: words.data[words.data.length - 1].word.pronunciation_Url
       })
     })
     .catch(error => {
@@ -75,34 +80,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-
     this.getWords()
-    
-    // axios.get('/api/words')
-    // .then(words => {
-    //   // console.log('json parse: ', JSON.stringify(words));
-    //   // console.log(`wordsObj on client get is ${words.data[0].word.word}`)
-    //   let wordsArray = words.data.map(word => (word.word.word));
-    //   //console.log('wordsArray :', wordsArray);
-    //   this.setState({
-    //     words: wordsArray
-    //   })
-    // })
-    // .catch(error => {
-    //   console.log(`error on client index.jsx getting messages from server ${error}`);
-    // })
-
-    // $.ajax({
-    //   url: '/api/words', 
-    //   success: (data) => {
-    //     this.setState({
-    //       items: data
-    //     })
-    //   },
-    //   error: (err) => {
-    //     console.log('err', err);
-    //   }
-    // });
   }
 
   render () {
@@ -119,6 +97,14 @@ class App extends React.Component {
               search={this.search}
               textGone={this.textGone}
               getWords={this.getWords}
+            />
+          </tr>
+          <tr>
+            <Definition
+              currentWord={this.state.currentWord}
+              definitions={this.state.definitions}
+              etymology={this.state.etymology}
+              pronunciationURL={this.state.pronunciationURL}
             />
           </tr>
           <tr>

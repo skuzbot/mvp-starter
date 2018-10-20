@@ -23,8 +23,9 @@ app.post('/api/search', (request, response) => {
       
       saveWord(dataObj)
       .then(res => {
-        console.log('data saved')
-        response.end(`post end in saveWord .then sent res: ${res}`);
+        console.log('data saved', res)
+
+        response.end(res);
       })
       .catch(err => {
         console.log(`error in saveWord on server ${err}`);
@@ -44,6 +45,7 @@ app.post('/api/search', (request, response) => {
     // }
 })
 
+
 app.get('/api/words', (request, response) => {
   console.log('request in app.get in server is ', request.body)
 
@@ -52,7 +54,7 @@ app.get('/api/words', (request, response) => {
       console.log(`error in app.get words on server ${err}`);
       response.status(500).end('error on server in app.get /api/words')
     } else {
-      //console.log('words from select all ', words)
+      console.log('words from select all ', words)
       let wordsArray = words.map(word => {
         return {word};
       })

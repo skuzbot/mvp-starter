@@ -14,10 +14,10 @@ db.once("open", function() {
 const wordSchema = new mongoose.Schema({
   _id: String,
   word: String,
-  // lexicalCatagory: String,
-  // etymology: String,
-  // definitions: Array,
-  // pronunciation_Url: String,
+  lexicalCatagory: String,
+  etymology: String,
+  definitions: Array,
+  pronunciation_Url: String,
 });
 
 const Word = mongoose.model("Word", wordSchema);
@@ -33,10 +33,10 @@ const saveWord = (responseData) => {
     let newWord = {
       id: dataObj.id,
       word: dataObj.word,
-      // lexicalCatagory: dataObj.lexicalEntries[0].lexicalCategory,
-      // etymology: dataObj.lexicalEntries[0].entries[0].etymologies[0],
-      // definitions: dataObj.lexicalEntries[0].entries[0].senses.map(sense => (sense.definitions[0])),
-      // pronunciation_Url: dataObj.lexicalEntries[0].pronunciations[0].audioFile
+      lexicalCatagory: dataObj.lexicalEntries[0].lexicalCategory,
+      etymology: dataObj.lexicalEntries[0].entries[0].etymologies[0],
+      definitions: dataObj.lexicalEntries[0].entries[0].senses.map(sense => (sense.definitions[0])),
+      pronunciation_Url: dataObj.lexicalEntries[0].pronunciations[0].audioFile
     }
   
     //console.log(`newWord in db is ${newWord}`);
@@ -44,10 +44,10 @@ const saveWord = (responseData) => {
     newWord = new Word({
       _id: newWord.id,
       word: newWord.word,
-      // lexicalCatagory: newWord.lexicalCategory,
-      // etymology: newWord.etymology,
-      // definitions: newWord.definitions,
-      // pronunciation_Url: newWord.pronunciation_Url
+      lexicalCatagory: newWord.lexicalCategory,
+      etymology: newWord.etymology,
+      definitions: newWord.definitions,
+      pronunciation_Url: newWord.pronunciation_Url
     });
   
     Word.findOneAndUpdate(
@@ -57,12 +57,14 @@ const saveWord = (responseData) => {
       (err, newWord) => {
         if (err) {
           reject(err => {
-            console.log(`error occurred saving word to database ${err}`);
-            cb(err, null);
+            throw new Error(`error occurred saving word to database ${err}`)
+            return;
           })
         } else {
-          resolve(newWord => {
-            cb(null, newWord);
+          
+          resolve(sendWord => {
+            console.log('sendWord in fOAU :', sendWord);
+            return sendWord;
           })
         }
       }
