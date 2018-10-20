@@ -1,6 +1,5 @@
 const config = require('../config');
 const axios = require('axios');
-const bodyParser = require('body-parser');
 
 searchOxfordWords = (query) => {
   return new Promise((resolve, reject) => {

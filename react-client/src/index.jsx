@@ -5,16 +5,20 @@ import List from './components/List.jsx';
 import Search from './components/Search.jsx';
 import Definition from './components/Definition.jsx';
 
+const tableStyle = {
+  border: '1px solid black',
+  width: '50%'
+}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       //search states:
-      query: 'willow',
+      query: 'search here!',
 
       //definition states:
-      currentWord: 'hey',
+      currentWord: '',
       etymology: '',
       definitions: [],
       //exampleSentence: '',
@@ -47,13 +51,14 @@ class App extends React.Component {
       console.log('json: ', JSON.stringify(words.data[words.data.length - 1]));
       // console.log(`wordsObj on client get is ${words.data[0].word.word}`)
       let wordsArray = words.data.map(word => (word.word.word));
+      let uppercaseWord = words.data[words.data.length - 1].word.word.charAt(0).toUpperCase() + words.data[words.data.length - 1].word.word.substr(1);
       //console.log('wordsArray :', wordsArray);
       this.setState({
-        currentWord: words.data[words.data.length - 1].word.word,
+        currentWord: uppercaseWord,
         words: wordsArray,
         definitions: words.data[words.data.length - 1].word.definitions,
         etymology: words.data[words.data.length - 1].word.etymology,
-        pronunciationURL: words.data[words.data.length - 1].word.pronunciation_Url
+        pronunciationURL: words.data[words.data.length - 1].word.pronunciation_Url ? words.data[words.data.length - 1].word.pronunciation_Url : ''
       })
     })
     .catch(error => {
@@ -68,6 +73,7 @@ class App extends React.Component {
     })
     .then(function (response) {
       console.log('index.jsx response: ', response);
+      axios.post
     })
     .then(res => {
       this.getWords();
@@ -85,7 +91,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <table>
+      <table style={tableStyle}>
         <thead>
           <tr>Search a Word!!</tr>
         </thead>
