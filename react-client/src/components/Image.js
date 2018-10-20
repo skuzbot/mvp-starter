@@ -4,23 +4,20 @@ const tdStyle = {
   border: '1px solid black',
 }
 const imgStyle = {
-  width: '1300px',
-  //'max-width': '600px'
-}
-
-let imageIndex = 0;
-
-const imgNext = () => {
-  imageIndex++
+  //width: '',
+  'max-width': '1300px'
 }
 
 const Image = (props) => (
   <td style={tdStyle}>
     <div>
+      <button onClick={() => props.nextImage()}>
+        New Image
+      </button>
       <img
         style={imgStyle}
         src = {
-          props.images[imageIndex] ? props.images[imageIndex] : 'https://cdn.pixabay.com/photo/2016/01/19/17/27/dictionary-1149723_1280.jpg'
+          props.currentImage
         }
       />
 

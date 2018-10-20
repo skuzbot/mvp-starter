@@ -2,7 +2,13 @@ import React from 'react';
 
 const borderStyle = {
   border: '1px solid black',
-  width: '70%',
+  _width: '70%',
+  get width() {
+    return this._width;
+  },
+  set width(value) {
+    this._width = value;
+  },
   background: '#aaafb7',
   'padding-right': '20px',
   'padding-left': '0px',
@@ -14,7 +20,7 @@ const fontBig = {
 }
 
 const fontMed = {
-  'font-size': '20px'
+  'font-size': '30px'
 }
 
 const Definition = (props) => ( 

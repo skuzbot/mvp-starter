@@ -5,6 +5,8 @@ import List from './components/List.jsx';
 import Search from './components/Search.jsx';
 import Definition from './components/Definition.jsx';
 import Image from './components/Image.js'
+//import intro from '../../lib/'
+
 
 const tableStyle = {
   border: '1px solid black',
@@ -32,7 +34,8 @@ class App extends React.Component {
       //exampleSentence: '',
       pronunciationURL: '',
       words: [],
-      images: []
+      images: ['https: //i.imgur.com/1MtlNSw.jpg'],
+      currentImage: 'https://i.imgur.com/1MtlNSw.jpg'
     }
 
     this.onChange = this.onChange.bind(this);
@@ -40,6 +43,8 @@ class App extends React.Component {
     this.textGone = this.textGone.bind(this);
     this.getWords = this.getWords.bind(this);
     this.getImages = this.getImages.bind(this);
+    this.nextImage = this.nextImage.bind(this);
+    
   }
 
   onChange(e) {
@@ -51,6 +56,16 @@ class App extends React.Component {
   textGone() {
     this.setState({
       query: ''
+    })
+  }
+
+  nextImage() {
+    let imgIndex = Math.floor(Math.random() * Math.floor(this.state.images.length));
+    console.log(imgIndex);
+    let newImage = this.state.images[imgIndex];
+    console.log(newImage);
+    this.setState({
+      currentImage: newImage
     })
   }
 
@@ -105,7 +120,8 @@ class App extends React.Component {
       .then(images => {
         console.log('images on client side :', images);
         this.setState({
-          images: images.data
+          images: images.data,
+          currentImage: images.data[0]
         })
       })
       .catch(error => {
@@ -151,7 +167,8 @@ class App extends React.Component {
               pronunciationURL={this.state.pronunciationURL}
             />
             <Image 
-              images={this.state.images}
+              currentImage={this.state.currentImage}
+              nextImage={this.nextImage}
             />
           </tr>
           <tr>
