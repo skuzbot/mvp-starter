@@ -11,8 +11,8 @@ import Image from './components/Image.js'
 const tableStyle = {
   border: '1px solid black',
   width: '80%',
-  'font-family': 'Titillium Web, sans-serif',
-  'font-size': '16px',
+  fontFamily: 'Titillium Web, sans-serif',
+  fontSize: '16px',
   background: '#dcdfe5'
 }
 
@@ -147,7 +147,7 @@ class App extends React.Component {
     return (
       <table style={tableStyle}>
         <thead>
-          <tr style={titleFont}>Search a Word!!</tr>
+          <tr style={titleFont}>Word View</tr>
           <tr>
             <Search 
               query={this.state.query}

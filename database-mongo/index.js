@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/wordSearcher");
-
+const MONGO_URI = require('../config').MONGO_URI;
+mongoose.connect(MONGO_URI);
 const db = mongoose.connection;
 
-db.on("error", function() {
-  console.log("mongoose connection error");
+db.on("error", function(err) {
+  console.log("mongoose connection error", err);
 });
 
 db.once("open", function() {

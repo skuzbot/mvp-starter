@@ -10,17 +10,17 @@ const borderStyle = {
     this._width = value;
   },
   background: '#aaafb7',
-  'padding-right': '20px',
-  'padding-left': '0px',
+  paddingRight: '20px',
+  paddingLeft: '0px',
 }
 
 const fontBig = {
-  'font-size': '40px',
+  fontSize: '40px',
   'padding': '0px',
 }
 
 const fontMed = {
-  'font-size': '30px'
+  fontSize: '30px'
 }
 
 const Definition = (props) => ( 

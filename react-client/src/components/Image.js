@@ -5,7 +5,7 @@ const tdStyle = {
 }
 const imgStyle = {
   //width: '',
-  'max-width': '1300px'
+  maxWidth: '1300px'
 }
 
 const Image = (props) => (
